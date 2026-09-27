@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cacl7fv64amgf"]
+
+[ext_resource type="Script" uid="uid://bnbaws8hxoj2n" path="res://pickups/pickup_ring.gd" id="1_enf06"]
+
+[node name="Node2D" type="Node2D" unique_id=1096890553]
+script = ExtResource("1_enf06")

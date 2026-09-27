@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cfjbe80b84qrj"]
+
+[ext_resource type="Script" uid="uid://bras7b37bykgx" path="res://BounceEngine.gd" id="1_l12im"]
+[ext_resource type="AudioStream" uid="uid://2l3smkxcc5tl" path="res://wall-collision.mp3" id="2_pbrth"]
+[ext_resource type="AudioStream" uid="uid://dcxxyvqemd500" path="res://sword_slash.mp3" id="3_8a5ub"]
+[ext_resource type="AudioStream" uid="uid://c5r8dg65k1npq" path="res://sword_sword.wav" id="4_ctu3r"]
+[ext_resource type="Texture2D" uid="uid://iyfctgp5bwlq" path="res://heads/Flags/usa_ball.png" id="5_l12im"]
+[ext_resource type="Texture2D" uid="uid://dv3pwjgvisecu" path="res://weapons/33_scythe.png" id="6_pbrth"]
+[ext_resource type="Texture2D" uid="uid://b303drpieruw5" path="res://damage_particle.png" id="7_3fth6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y32ns"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 81.02469
+
+[sub_resource type="Curve" id="Curve_2hs0m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1jxqw"]
+colors = PackedColorArray(0.5568628, 0.7882353, 0.79607844, 1, 0.5803922, 0.56078434, 0.40784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.12941177, 0.06666667, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.4383592, 0, 0.088504635, 1)
+
+[sub_resource type="Gradient" id="Gradient_bcuyi"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0dobq"]
+gradient = SubResource("Gradient_bcuyi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_70hj8"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 80.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.29999998
+color_ramp = SubResource("GradientTexture1D_0dobq")
+
+[node name="player" type="RigidBody2D" unique_id=592200321 groups=["player_1"]]
+physics_material_override = SubResource("PhysicsMaterial_y32ns")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_l12im")
+bounce_sound = ExtResource("2_pbrth")
+attack_sound = ExtResource("3_8a5ub")
+weapon_clash_sound = ExtResource("4_ctu3r")
+weapon_angle = 130.0
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2107630166]
+wait_time = 3.0
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1946849877]
+position = Vector2(-3.8146973e-06, 1.0000038)
+scale = Vector2(0.7421875, 0.703125)
+texture = ExtResource("5_l12im")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816676654 groups=["player"]]
+position = Vector2(-0.1, 0.63)
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Weapon" type="Sprite2D" parent="." unique_id=1093259947]
+position = Vector2(168.65, 47.83)
+rotation = 5.8293996
+scale = Vector2(0.120312035, 0.11407165)
+texture = ExtResource("6_pbrth")
+
+[node name="Area2D" type="Area2D" parent="Weapon" unique_id=330084434 groups=["weapon"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D" unique_id=404936758]
+polygon = PackedVector2Array(589.2562, 392.5619, 626.97546, 450.97925, 597.6432, 494.41162, 541.88916, 494.99146, 511.82373, 460.01843, 275.86072, 270.36084, 103.30554, 103.56763, -39.367554, -47.85376, -149.06482, -250.58673, -205.55194, -328.41217, -242.35474, -288.82288, -250.19177, -331.86853, -309.58948, -323.40936, -383.56152, -283.43335, -435.12207, -231.92859, -468.46448, -219.81982, -541.8867, -121.039795, -593.0807, -30.332275, -625.69, 60.182007, -635.70435, 181.82642, -623.49054, 295.39832, -608.183, 342.28687, -638.4316, 287.7124, -669.0469, 193.93506, -684.9043, 88.24243, -663.959, -57.03955, -587.443, -222.50287, -491.79248, -329.35547, -362.43292, -409.11407, -254.93518, -441.5974, -218.13239, -481.18677, -121.38214, -470.4312, -143.42719, -442.75732, -150.34784, -387.7962, -66.88904, -208.31427, 91.45825, 29.198486, 237.77502, 172.74072, 466.26746, 358.5553, 544.7997, 408.7069)
+
+[node name="Weapon2" type="Sprite2D" parent="." unique_id=2128660655]
+visible = false
+position = Vector2(168.65, 47.83)
+rotation = 5.8293996
+scale = Vector2(0.120312035, 0.11407165)
+texture = ExtResource("6_pbrth")
+
+[node name="Area2D" type="Area2D" parent="Weapon2" unique_id=27350848 groups=["weapon"]]
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon2/Area2D" unique_id=1291793]
+polygon = PackedVector2Array(589.2562, 392.5619, 626.97546, 450.97925, 597.6432, 494.41162, 541.88916, 494.99146, 511.82373, 460.01843, 275.86072, 270.36084, 103.30554, 103.56763, -39.367554, -47.85376, -149.06482, -250.58673, -205.55194, -328.41217, -242.35474, -288.82288, -250.19177, -331.86853, -309.58948, -323.40936, -383.56152, -283.43335, -435.12207, -231.92859, -468.46448, -219.81982, -541.8867, -121.039795, -593.0807, -30.332275, -625.69, 60.182007, -635.70435, 181.82642, -623.49054, 295.39832, -608.183, 342.28687, -638.4316, 287.7124, -669.0469, 193.93506, -684.9043, 88.24243, -663.959, -57.03955, -587.443, -222.50287, -491.79248, -329.35547, -362.43292, -409.11407, -254.93518, -441.5974, -218.13239, -481.18677, -121.38214, -470.4312, -143.42719, -442.75732, -150.34784, -387.7962, -66.88904, -208.31427, 91.45825, 29.198486, 237.77502, 172.74072, 466.26746, 358.5553, 544.7997, 408.7069)
+
+[node name="Trail" type="Line2D" parent="." unique_id=1943388675]
+top_level = true
+width = 30.0
+width_curve = SubResource("Curve_2hs0m")
+gradient = SubResource("Gradient_1jxqw")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1793519666]
+z_index = 4096
+custom_minimum_size = Vector2(190, 35)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -60.0
+offset_top = 2207.0
+offset_right = 60.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+
+[node name="helthpoints" type="Label" parent="ProgressBar" unique_id=1012282270]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "1000"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="." unique_id=1542381249]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1e-05, 1e-05)
+text = "USA"
+
+[node name="BloodParticles" type="GPUParticles2D" parent="." unique_id=98026067]
+emitting = false
+amount = 16
+texture = ExtResource("7_3fth6")
+lifetime = 0.94
+one_shot = true
+explosiveness = 0.98
+randomness = 0.54
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_70hj8")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

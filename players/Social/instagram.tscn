@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://bala3luf8of6l"]
+
+[ext_resource type="Script" uid="uid://bras7b37bykgx" path="res://BounceEngine.gd" id="1_3uwsp"]
+[ext_resource type="AudioStream" uid="uid://2l3smkxcc5tl" path="res://wall-collision.mp3" id="2_qngn5"]
+[ext_resource type="AudioStream" uid="uid://fn8qhbrhkcf0" path="res://attack.mp3" id="3_18d8m"]
+[ext_resource type="Texture2D" uid="uid://bd8i3ydq6nuxi" path="res://heads/Social/instagram_ball.png" id="4_3uwsp"]
+[ext_resource type="Texture2D" uid="uid://d10q5vssyuytg" path="res://weapons/0_ig_hearth.png" id="5_qngn5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y32ns"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 81.02469
+
+[sub_resource type="Curve" id="Curve_2hs0m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1jxqw"]
+colors = PackedColorArray(0.49817938, 0.044707835, 0.062712334, 1, 0.5764706, 0.70980394, 0.5254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.12941177, 0.06666667, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.4383592, 0, 0.088504635, 1)
+
+[node name="player" type="RigidBody2D" unique_id=592200321 groups=["player_1"]]
+physics_material_override = SubResource("PhysicsMaterial_y32ns")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_3uwsp")
+bounce_sound = ExtResource("2_qngn5")
+attack_sound = ExtResource("3_18d8m")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2107630166]
+wait_time = 3.0
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1946849877]
+position = Vector2(-3.8146973e-06, 1.0000038)
+scale = Vector2(0.7421875, 0.703125)
+texture = ExtResource("4_3uwsp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816676654 groups=["player"]]
+position = Vector2(-0.1, 0.63)
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Weapon" type="Sprite2D" parent="." unique_id=336589762]
+position = Vector2(93.99999, 44.999996)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_qngn5")
+
+[node name="Area2D" type="Area2D" parent="Weapon" unique_id=924664398 groups=["weapon"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D" unique_id=1163159065]
+polygon = PackedVector2Array(0.00024414063, -579.9999, 120.00012, -699.9998, 280.00012, -779.9998, 520.0001, -779.9998, 680.0001, -699.9998, 820.0001, -579.9999, 880.0001, -399.99988, 900.0001, -239.99988, 840.0001, -79.99988, 760.0001, 40.000122, 600.0001, 200.00006, 540.0001, 260.00006, 480.00012, 320.00006, 420.00012, 380.00006, 340.00012, 460.00006, 0.00024414063, 780.00006, -159.99976, 640.00006, -259.99976, 540.00006, -339.99976, 460.00006, -539.99976, 240.00006, -819.99976, -59.999878, -879.99976, -199.99988, -899.99976, -299.99988, -839.99976, -519.9999, -719.99976, -679.9998, -479.99976, -779.9998, -199.99976, -759.9998, -119.999756, -679.9998, 0.00024414063, -579.9999, -74.99988, -199.99994, -49.999878, -262.49994, -12.499878, -324.99994, -12.499878, -487.49994)
+
+[node name="Weapon2" type="Sprite2D" parent="." unique_id=1463721305]
+position = Vector2(93.99999, 44.999996)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_qngn5")
+
+[node name="Area2D" type="Area2D" parent="Weapon2" unique_id=2077924850 groups=["weapon"]]
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon2/Area2D" unique_id=1244564533]
+polygon = PackedVector2Array(0.00024414063, -579.9999, 120.00012, -699.9998, 280.00012, -779.9998, 520.0001, -779.9998, 680.0001, -699.9998, 820.0001, -579.9999, 880.0001, -399.99988, 900.0001, -239.99988, 840.0001, -79.99988, 760.0001, 40.000122, 600.0001, 200.00006, 540.0001, 260.00006, 480.00012, 320.00006, 420.00012, 380.00006, 340.00012, 460.00006, 0.00024414063, 780.00006, -159.99976, 640.00006, -259.99976, 540.00006, -339.99976, 460.00006, -539.99976, 240.00006, -819.99976, -59.999878, -879.99976, -199.99988, -899.99976, -299.99988, -839.99976, -519.9999, -719.99976, -679.9998, -479.99976, -779.9998, -199.99976, -759.9998, -119.999756, -679.9998, 0.00024414063, -579.9999, -74.99988, -199.99994, -49.999878, -262.49994, -12.499878, -324.99994, -12.499878, -487.49994)
+
+[node name="Trail" type="Line2D" parent="." unique_id=1943388675]
+top_level = true
+width = 30.0
+width_curve = SubResource("Curve_2hs0m")
+gradient = SubResource("Gradient_1jxqw")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1793519666]
+z_index = 4096
+custom_minimum_size = Vector2(190, 35)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -60.0
+offset_top = 2207.0
+offset_right = 60.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+
+[node name="helthpoints" type="Label" parent="ProgressBar" unique_id=1012282270]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "1000"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="." unique_id=1378290650]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1e-05, 1e-05)
+text = "Instagram"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

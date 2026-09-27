@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://ban0cy2w21n2n"]
+
+[ext_resource type="Script" uid="uid://bras7b37bykgx" path="res://BounceEngine.gd" id="1_pl178"]
+[ext_resource type="AudioStream" uid="uid://2l3smkxcc5tl" path="res://wall-collision.mp3" id="2_7cow5"]
+[ext_resource type="AudioStream" uid="uid://fn8qhbrhkcf0" path="res://attack.mp3" id="3_4rnaj"]
+[ext_resource type="Texture2D" uid="uid://irq0xsxlbdau" path="res://heads/Gaming/gtav2_ball.png" id="4_pl178"]
+[ext_resource type="Texture2D" uid="uid://dg5qjij2xfeqi" path="res://weapons/18_baseballbat.png" id="5_ko5kx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y32ns"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 81.02469
+
+[sub_resource type="Curve" id="Curve_2hs0m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1jxqw"]
+colors = PackedColorArray(0.5568628, 0.7882353, 0.79607844, 1, 0.5803922, 0.56078434, 0.40784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.12941177, 0.06666667, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.4383592, 0, 0.088504635, 1)
+
+[node name="player" type="RigidBody2D" unique_id=592200321 groups=["player_1"]]
+physics_material_override = SubResource("PhysicsMaterial_y32ns")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_pl178")
+bounce_sound = ExtResource("2_7cow5")
+attack_sound = ExtResource("3_4rnaj")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2107630166]
+wait_time = 3.0
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1946849877]
+position = Vector2(-3.8146973e-06, 1.0000038)
+scale = Vector2(0.7421875, 0.703125)
+texture = ExtResource("4_pl178")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816676654 groups=["player"]]
+position = Vector2(-0.1, 0.63)
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Weapon" type="Sprite2D" parent="." unique_id=336589762]
+position = Vector2(106.46, 63.759995)
+scale = Vector2(0.11974483, 0.12620689)
+texture = ExtResource("5_ko5kx")
+
+[node name="Area2D" type="Area2D" parent="Weapon" unique_id=924664398 groups=["weapon"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D" unique_id=1163159065]
+polygon = PackedVector2Array(-396.3428, 509.00552, -329.53406, 548.62305, -296.1297, 509.00552, -279.4275, 413.92355, -120.756775, 223.75961, -53.94806, 168.29514, 229.98907, -116.950806, 438.7663, -386.34973, 413.71307, -489.3552, 355.25543, -528.97266, 288.44672, -521.0492, 138.12701, -322.96173, 12.860657, -140.72128, -104.05463, 65.28964, -237.67206, 247.53012, -312.8319, 358.45908, -362.93842, 421.84708, -446.44934, 421.84708)
+
+[node name="Weapon2" type="Sprite2D" parent="." unique_id=905719617]
+position = Vector2(106.46, 63.759995)
+scale = Vector2(0.11974483, 0.12620689)
+texture = ExtResource("5_ko5kx")
+
+[node name="Area2D" type="Area2D" parent="Weapon2" unique_id=693873511 groups=["weapon"]]
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon2/Area2D" unique_id=120107607]
+polygon = PackedVector2Array(-396.3428, 509.00552, -329.53406, 548.62305, -296.1297, 509.00552, -279.4275, 413.92355, -120.756775, 223.75961, -53.94806, 168.29514, 229.98907, -116.950806, 438.7663, -386.34973, 413.71307, -489.3552, 355.25543, -528.97266, 288.44672, -521.0492, 138.12701, -322.96173, 12.860657, -140.72128, -104.05463, 65.28964, -237.67206, 247.53012, -312.8319, 358.45908, -362.93842, 421.84708, -446.44934, 421.84708)
+
+[node name="Trail" type="Line2D" parent="." unique_id=1943388675]
+top_level = true
+width = 30.0
+width_curve = SubResource("Curve_2hs0m")
+gradient = SubResource("Gradient_1jxqw")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1793519666]
+z_index = 4096
+custom_minimum_size = Vector2(190, 35)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -60.0
+offset_top = 2207.0
+offset_right = 60.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+
+[node name="helthpoints" type="Label" parent="ProgressBar" unique_id=1012282270]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "1000"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="." unique_id=1542381249]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1e-05, 1e-05)
+text = "Franklin"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

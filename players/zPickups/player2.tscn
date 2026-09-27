@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://cyvw0fji3edk"]
+
+[ext_resource type="Script" uid="uid://bras7b37bykgx" path="res://BounceEngine.gd" id="1_uqwy3"]
+[ext_resource type="AudioStream" uid="uid://2l3smkxcc5tl" path="res://wall-collision.mp3" id="2_8caby"]
+[ext_resource type="AudioStream" uid="uid://fn8qhbrhkcf0" path="res://attack.mp3" id="3_61wwb"]
+[ext_resource type="Texture2D" uid="uid://diqr01w8yce5u" path="res://Harland_ball.png" id="4_uqwy3"]
+[ext_resource type="Texture2D" uid="uid://dlk5r1bt62c74" path="res://viking-svgrepo-com.svg" id="5_8caby"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y32ns"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="Curve" id="Curve_uqwy3"]
+_data = [Vector2(0, 0.005914688), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8caby"]
+colors = PackedColorArray(0, 0, 0, 1, 0.96862745, 0, 0.13333334, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 77.02597
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhnal"]
+bg_color = Color(0.12941177, 0.06666667, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqwy3"]
+bg_color = Color(0.4383592, 0, 0.088504635, 1)
+
+[node name="player" type="RigidBody2D" unique_id=592200321 groups=["player_2"]]
+physics_material_override = SubResource("PhysicsMaterial_y32ns")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_uqwy3")
+bounce_sound = ExtResource("2_8caby")
+attack_sound = ExtResource("3_61wwb")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=2107630166]
+wait_time = 3.0
+
+[node name="Trail" type="Line2D" parent="." unique_id=1948585456]
+top_level = true
+position = Vector2(-2.2737368e-13, 0)
+scale = Vector2(0.99999994, 0.99999994)
+width = 32.0
+width_curve = SubResource("Curve_uqwy3")
+gradient = SubResource("Gradient_8caby")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1946849877]
+position = Vector2(-3.8146973e-06, 1.0000038)
+scale = Vector2(0.7421875, 0.703125)
+texture = ExtResource("4_uqwy3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816676654 groups=["player"]]
+position = Vector2(-2, 1)
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Weapon" type="Sprite2D" parent="." unique_id=336589762]
+position = Vector2(93.99999, 44.999996)
+rotation = -3.3597589
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("5_8caby")
+
+[node name="Area2D" type="Area2D" parent="Weapon" unique_id=1707420116 groups=["weapon"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D" unique_id=1163159065]
+polygon = PackedVector2Array(81.8183, -236.36362, 236.36371, -145.45453, 318.18195, -209.09088, 372.72736, -272.72723, 409.091, -218.1818, 381.8183, -90.90906, 318.18195, -18.181793, 345.45465, 81.81821, 363.6364, 154.54547, 372.72736, 190.90912, 354.5456, 263.6364, -354.54535, 263.6364, -354.54535, 200, -381.81808, 172.7273, -354.54535, 118.18182, -336.36353, 90.90912, -327.27264, 3.0517578e-05, -399.9999, -154.54543, -390.909, -263.63635, -327.27264, -190.90906, -227.27264, -154.54543, -118.1817, -218.1818, -72.72717, -236.36362, -54.54535, -263.63635, 36.36371, -254.54543)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1163290537]
+z_index = 4096
+custom_minimum_size = Vector2(190, 35)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 2.0
+offset_left = -60.0
+offset_top = 2207.0
+offset_right = 60.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bhnal")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqwy3")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="helthpoints" type="Label" parent="ProgressBar" unique_id=1716398843]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

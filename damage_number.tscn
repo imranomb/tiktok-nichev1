@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dj6u74h7fm67p"]
+
+[ext_resource type="Script" uid="uid://cwslb48pwlfxs" path="res://damage_number.gd" id="1_jany0"]
+
+[node name="Node2D" type="Node2D" unique_id=205986633]
+script = ExtResource("1_jany0")
+
+[node name="Label" type="Label" parent="." unique_id=419036720]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0.18039216, 1)
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

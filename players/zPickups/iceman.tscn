@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c4hjud7fpjiiq"]
+
+[ext_resource type="Script" uid="uid://07o6jinxrfq2" path="res://players/zPickups/projectile.gd" id="1_55ibt"]
+[ext_resource type="Texture2D" uid="uid://c306qtkmeei43" path="res://weapons/3_rocket.png" id="2_thwho"]
+
+[node name="weapon_projectile" type="Area2D" unique_id=377102357]
+script = ExtResource("1_55ibt")
+
+[node name="Weapon2" type="Sprite2D" parent="." unique_id=431884212]
+position = Vector2(93.99999, 44.999996)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_thwho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1889720840]
+position = Vector2(93.99999, 44.999996)
+scale = Vector2(0.08, 0.08)
+polygon = PackedVector2Array(0.00012207031, -737.49994, 112.50012, -637.49994, 200.00012, -474.99994, 200.00012, -412.49994, 212.50012, -374.99994, 212.50012, -12.499939, 325.00012, 100.00006, 362.50012, 350.00006, 337.50012, 387.50006, 175.00012, 237.50006, 125.00012, 300.00006, 150.00012, 375.00006, 50.000122, 387.50006, -62.499878, 387.50006, -137.49988, 375.00006, -149.99988, 362.50006, -124.99988, 300.00006, -187.49988, 237.50006, -337.49988, 387.50006, -362.49988, 350.00006, -324.99988, 100.00006, -212.49988, -12.499939, -212.49988, -387.49994, -199.99988, -424.99994, -199.99988, -487.49994, -112.49988, -637.49994)

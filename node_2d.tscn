@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dd2e3rj5ndpht"]
+
+[ext_resource type="Script" uid="uid://cdflq36ljrvmh" path="res://node_2d.gd" id="1_epypp"]
+[ext_resource type="AudioStream" uid="uid://d0i8fhmp6wwrq" path="res://tiksound.mp3" id="2_0hol4"]
+[ext_resource type="PackedScene" uid="uid://5ml8lm2mydlc" path="res://players/Football/Chelsea.tscn" id="3_rj586"]
+[ext_resource type="PackedScene" uid="uid://bkpsnceodb6th" path="res://players/Football/Arsenal.tscn" id="4_4d7sh"]
+[ext_resource type="PackedScene" uid="uid://c66w66s5yw5pq" path="res://players/Football/Spurs.tscn" id="5_ir8iy"]
+[ext_resource type="PackedScene" uid="uid://dg7oh1r0nv7e1" path="res://players/Football/Liverpool.tscn" id="6_hqns4"]
+[ext_resource type="PackedScene" uid="uid://brbqinp521w0h" path="res://players/Football/man_utd.tscn" id="7_x0ka3"]
+[ext_resource type="PackedScene" uid="uid://dgeq6nolu00bx" path="res://players/Football/man_city.tscn" id="8_0h7mo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(1023, 20)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epypp"]
+
+[node name="Node2D" type="CanvasLayer" unique_id=2092173931 node_paths=PackedStringArray("players")]
+process_mode = 3
+script = ExtResource("1_epypp")
+players = [NodePath("player"), NodePath("player2"), NodePath("player3"), NodePath("player4"), NodePath("player5"), NodePath("player6")]
+tik_sound = ExtResource("2_0hol4")
+arena_min = Vector2(721, 269.94)
+
+[node name="background" type="ColorRect" parent="." unique_id=716243150]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="stage" type="ColorRect" parent="background" unique_id=442805755]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="background/stage" unique_id=336998184 groups=["walls"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="background/stage/StaticBody2D" unique_id=1552927550]
+position = Vector2(497, -10)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="background/stage/StaticBody2D" unique_id=142004685]
+position = Vector2(505, 1012)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="background/stage/StaticBody2D" unique_id=1855662159]
+position = Vector2(1011, 510.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="background/stage/StaticBody2D" unique_id=775912750]
+position = Vector2(-12, 511)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="player" parent="." unique_id=592200321 instance=ExtResource("3_rj586")]
+position = Vector2(1204, 450)
+
+[node name="player2" parent="." unique_id=1572429475 instance=ExtResource("4_4d7sh")]
+position = Vector2(1204, 950)
+
+[node name="player3" parent="." unique_id=490186142 instance=ExtResource("5_ir8iy")]
+position = Vector2(904, 450)
+
+[node name="player4" parent="." unique_id=704645803 instance=ExtResource("6_hqns4")]
+position = Vector2(904, 950)
+
+[node name="player5" parent="." unique_id=1821966787 instance=ExtResource("7_x0ka3")]
+position = Vector2(1504, 450)
+
+[node name="player6" parent="." unique_id=349005172 instance=ExtResource("8_0h7mo")]
+position = Vector2(1504, 950)
+
+[node name="Label" type="Label" parent="." unique_id=413115163]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -102.5
+offset_right = 43.0
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.45203477, 0.73026854, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = SubResource("StyleBoxEmpty_epypp")
+text = "1"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=121934225]
+
+[node name="Winner" type="ColorRect" parent="CanvasLayer" unique_id=882050826]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.5
+offset_top = -149.0
+offset_right = 331.5
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5294118, 0.8509804, 0.9607843, 0.6156863)
+
+[node name="winner_text" type="Label" parent="CanvasLayer/Winner" unique_id=685378279]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 64
+text = "Bosnia wins"
